@@ -1,0 +1,154 @@
+<html>
+<head>
+	<meta charset="utf-8">
+</head>	
+<body>
+<div class = 'main'>
+<h1>The Vernam cipher</h1>
+<p class = 'simple text'> Accepted symbols are: <br> [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z] </p>
+<p class = 'radio_text'>Select mode:</p>
+<input type="radio" id="decr_radio" name = "method" checked="checked"/>
+<label for="decr_radio" class = 'all_text'>Decryption</label><br>
+<input type="radio" id="encr_radio" name = "method"/>
+<label for="encr_radio" class = 'all_text'>Encryption</label>
+<h3> Enter your message or ciphertext: </h3>
+<textarea id = 'plaintext_field' rows = '5' cols = '45' onkeyup="message_length()"></textarea><p class = 'simple text' id = 'text_length'></p>
+<h3>Enter key:</h3>
+<p class = 'simple text'>Do not use same key more than once!</p>
+<textarea id = 'key_field' rows = '5' cols = '45' onkeyup="key_length()"></textarea><p class = 'simple text' id = 'key_length'></p>
+<button id = 'go_button'>Press Here</button>
+<h3> Enjoy the result:</h3>
+<textarea id = 'result_field' rows = '5' cols = '45'></textarea><br>
+</div>
+</body>
+</html>
+<script>
+function message_length(){
+    document.getElementById('text_length').innerHTML = 'Current message length is ' + (document.getElementById('plaintext_field').value.length);
+}
+function key_length(){
+    document.getElementById('key_length').innerHTML = 'Current key length is ' + (document.getElementById('key_field').value.length);
+}
+var alph = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var input_element_num = 0;
+var key_num = 0;
+var output_element_num = 0;
+var output_elem = "";
+document.getElementById('go_button').onclick = function() {
+
+    if(document.getElementById("encr_radio").checked){
+	var outputtext = "";
+	var inputtext = document.getElementById('plaintext_field').value.toLowerCase();
+	var key = document.getElementById('key_field').value.toLowerCase();
+	for(i = 0; i < inputtext.length; i++) {
+		input_element_num = alph.indexOf(inputtext.charAt(i));
+		key_num = alph.indexOf(key.charAt(i));
+		if ((key_num == "-1") || (input_element_num == "-1")){
+			alert('Unacceptable symbol detected');
+			break;
+		}
+		else {
+			output_element_num = ((input_element_num + key_num)%26);
+			output_elem = alph[output_element_num];
+			outputtext = outputtext.concat(output_elem);
+		}
+	}
+	document.getElementById('result_field').value = outputtext;
+    }
+
+    else if(document.getElementById("decr_radio").checked){
+    var outputtext = "";
+    var inputtext = document.getElementById('plaintext_field').value.toLowerCase();
+    var key = document.getElementById('key_field').value.toLowerCase();
+    for(i = 0; i < inputtext.length; i++) {
+        input_element_num = alph.indexOf(inputtext.charAt(i));
+        key_num = alph.indexOf(key.charAt(i));
+        if ((key_num == "-1") || (input_element_num == "-1")){
+            alert('Unacceptable symbol detected');
+            break;
+        }
+        else {
+            output_element_prenum = (input_element_num - key_num);
+            if (output_element_prenum >= 0){
+                output_element_num = output_element_prenum;
+            }
+            else {
+                output_element_num = ((26 + output_element_prenum)%26);
+            }
+            output_elem = alph[output_element_num];
+            outputtext = outputtext.concat(output_elem);
+        }
+    }
+    document.getElementById('result_field').value = outputtext;
+    }
+}
+
+</script>
+
+<style>
+
+body {
+        background: url("https://pp.vk.me/c628424/v628424667/3f5f8/POWJccaLAKM.jpg") repeat;
+        margin: 0;
+        padding: 0;
+}
+
+button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25em;
+    height: 3em;
+}
+
+h1 {
+        font-family: Futura;
+        font-weight: bold;
+        text-align: center;
+        margin-top:  20px;
+        font-size: 30pt;
+        color: #001a00;
+
+}
+
+h3 {
+        font-family: Futura;
+        font-weight: bold;
+        text-align: center;
+        margin-top:  20px;
+        font-size: 18pt;
+        color: #001a00;
+}
+
+h4 {
+        font-family: Futura;
+        font-weight: bold;
+        text-align: center;
+        font-size: 10pt;
+        color: #001a00;
+}
+
+.simple_text {
+        font-size: 10pt;
+        color: #001a00;
+        font-weight: bold;
+}
+
+
+.main {
+        text-align: center;
+        padding-top: 1px;
+        padding-right: 5px;
+        width: 500px;
+    margin: 0 auto;
+    padding-left: 5px;
+        border-radius: 25px;
+        padding-bottom: 25px;
+}
+textarea {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+</style>
