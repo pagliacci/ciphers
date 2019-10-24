@@ -5,7 +5,7 @@
 <body>
 <div class = 'main'>
 <h1>The Vernam cipher</h1>
-<p class = 'simple text'> Accepted symbols are: <br> [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z] </p>
+<p class = 'simple text'> </p>
 <p class = 'radio_text'>Select mode:</p>
 <input type="radio" id="decr_radio" name = "method" checked="checked"/>
 <label for="decr_radio" class = 'all_text'>Decryption</label><br>
@@ -30,6 +30,7 @@ function key_length(){
     document.getElementById('key_length').innerHTML = 'Current key length is ' + (document.getElementById('key_field').value.length);
 }
 var alph = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+document.getElementsByClassName("simple text")[0].innerHTML="Accepted symbols are: <br>"+ alph;
 var input_element_num = 0;
 var key_num = 0;
 var output_element_num = 0;
@@ -88,9 +89,14 @@ document.getElementById('go_button').onclick = function() {
 <style>
 
 body {
-        background: url("https://pp.vk.me/c628424/v628424667/3f5f8/POWJccaLAKM.jpg") repeat;
+		background:
+		linear-gradient(63deg, #f9f4e3 23%, transparent 23%) 7px 0,
+		linear-gradient(63deg, transparent 74%, #f9f4e3 78%),
+		linear-gradient(63deg, transparent 34%, #f9f4e3 38%, #f9f4e3 58%, transparent 62%),#e3dfdf;
+		background-size: 16px 48px;
         margin: 0;
         padding: 0;
+		font-family: Futura;
 }
 
 button {
@@ -100,32 +106,22 @@ button {
     width: 25em;
     height: 3em;
 }
-
-h1 {
-        font-family: Futura;
-        font-weight: bold;
+h1, h3, h4 {
+		font-weight: bold;
         text-align: center;
         margin-top:  20px;
+		color: #001a00;
+		}
+h1 {   
         font-size: 30pt;
-        color: #001a00;
-
 }
 
 h3 {
-        font-family: Futura;
-        font-weight: bold;
-        text-align: center;
-        margin-top:  20px;
         font-size: 18pt;
-        color: #001a00;
 }
 
 h4 {
-        font-family: Futura;
-        font-weight: bold;
-        text-align: center;
-        font-size: 10pt;
-        color: #001a00;
+        font-size: 10pt;    
 }
 
 .simple_text {
@@ -137,17 +133,14 @@ h4 {
 
 .main {
         text-align: center;
-        padding-top: 1px;
-        padding-right: 5px;
+        padding: 1px, 5px, 25px, 5px;
         width: 500px;
-    margin: 0 auto;
-    padding-left: 5px;
+		margin: 0 auto;
         border-radius: 25px;
-        padding-bottom: 25px;
 }
 textarea {
     display: block;
-    margin-left: auto;
+    margin: auto;
     margin-right: auto;
 }
 
